@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Sparkles,
-  Search,
-  Check,
-  X,
-  MapPin,
-  ChevronRight,
-  ShieldCheck,
-  Eye,
-} from 'lucide-react';
+import { Search, Check, X, MapPin, Eye } from 'lucide-react';
 import { productCategories, showroomVisualItems, businessInfo } from '../data/shopData';
 import { ShowroomVisualItem } from '../types/shop';
 
 export const CollectionsCatalog: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeDrawerItem, setActiveDrawerItem] = useState<ShowroomVisualItem | null>(null);
+  const [activeItem, setActiveItem] = useState<ShowroomVisualItem | null>(null);
 
   const filteredItems = showroomVisualItems.filter((item) => {
     const matchesCategory =
@@ -29,7 +19,7 @@ export const CollectionsCatalog: React.FC = () => {
   });
 
   const handleScrollToVisit = () => {
-    setActiveDrawerItem(null);
+    setActiveItem(null);
     const element = document.querySelector('#visit-us');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -37,43 +27,39 @@ export const CollectionsCatalog: React.FC = () => {
   };
 
   return (
-    <section id="collections" className="py-20 lg:py-28 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="collections" className="py-16 lg:py-24 bg-stone-950 text-stone-100 border-b border-stone-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-metallic-brass/30 mb-4">
-            <Sparkles className="w-3.5 h-3.5 text-metallic-copper" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-              Curated Physical Inventory
-            </span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-100 tracking-tight">
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-500 block mb-2">
+            Catalog & Department Index
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-100 tracking-tight">
             Our Department Collections
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-metallic-brass to-metallic-copper mx-auto rounded-full mt-3 mb-4" />
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            Browse our wide spectrum of physical kitchenware, traditional sacred metalware, heavy daily bartan, and built-in appliances directly photographed on our showroom floor.
+          <div className="h-1 w-16 bg-amber-600 rounded-full mt-3 mb-4" />
+          <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
+            Browse our core departments photographed directly inside our Rewari showroom. We carry extensive physical stock for daily cooking, traditional ceremonies, and home setups.
           </p>
         </div>
 
-        {/* Search & Category Filter Controls */}
-        <div className="space-y-6 mb-12">
+        {/* Filter Controls */}
+        <div className="space-y-5 mb-10">
           {/* Search Input */}
-          <div className="max-w-md mx-auto relative">
-            <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <div className="max-w-md relative">
+            <Search className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search collections (e.g. Copper, Kadai, Chimney, Brass)..."
-              className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-surface-card border border-surface-border focus:border-metallic-brass focus:ring-1 focus:ring-metallic-brass text-sm text-slate-100 placeholder-slate-500 transition-colors shadow-inner"
+              className="w-full pl-10 pr-4 py-2.5 rounded bg-stone-900 border border-stone-800 focus:border-amber-600 focus:outline-none text-sm text-stone-100 placeholder-stone-500"
             />
             {searchQuery && (
               <button
                 type="button"
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-white"
                 aria-label="Clear search"
               >
                 <X className="w-4 h-4" />
@@ -81,18 +67,18 @@ export const CollectionsCatalog: React.FC = () => {
             )}
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex items-center justify-center flex-wrap gap-2.5">
+          {/* Category Tabs */}
+          <div className="flex items-center flex-wrap gap-2">
             <button
               type="button"
               onClick={() => setSelectedCategory('all')}
-              className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+              className={`px-3.5 py-1.5 rounded text-xs font-medium transition-colors border ${
                 selectedCategory === 'all'
-                  ? 'bg-gradient-to-r from-metallic-brass to-metallic-copper text-surface-darker font-bold shadow-glow-brass scale-105'
-                  : 'bg-surface-card hover:bg-surface-border text-slate-300 border border-surface-border'
+                  ? 'bg-amber-600 text-stone-950 font-semibold border-amber-600'
+                  : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800'
               }`}
             >
-              All Departments ({showroomVisualItems.length})
+              All Collections ({showroomVisualItems.length})
             </button>
 
             {productCategories.map((cat) => {
@@ -103,10 +89,10 @@ export const CollectionsCatalog: React.FC = () => {
                   key={cat.id}
                   type="button"
                   onClick={() => setSelectedCategory(cat.id)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                  className={`px-3.5 py-1.5 rounded text-xs font-medium transition-colors border ${
                     isActive
-                      ? 'bg-gradient-to-r from-metallic-brass to-metallic-copper text-surface-darker font-bold shadow-glow-brass scale-105'
-                      : 'bg-surface-card hover:bg-surface-border text-slate-300 border border-surface-border'
+                      ? 'bg-amber-600 text-stone-950 font-semibold border-amber-600'
+                      : 'bg-stone-900 text-stone-300 border-stone-800 hover:bg-stone-800'
                   }`}
                 >
                   {cat.name} {count > 0 && `(${count})`}
@@ -116,102 +102,80 @@ export const CollectionsCatalog: React.FC = () => {
           </div>
         </div>
 
-        {/* Collections Cards Grid with Motion */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-        >
-          <AnimatePresence>
-            {filteredItems.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="rounded-2xl overflow-hidden bg-surface-card border border-surface-border hover:border-metallic-brass/50 shadow-card-luxury transition-all duration-300 flex flex-col group"
+        {/* Product Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredItems.map((item) => (
+            <div
+              key={item.id}
+              className="rounded-lg overflow-hidden bg-stone-900 border border-stone-800 hover:border-stone-700 transition-colors flex flex-col justify-between shadow-sm group"
+            >
+              {/* Photo */}
+              <div
+                className="relative aspect-[4/3] overflow-hidden bg-stone-950 cursor-pointer"
+                onClick={() => setActiveItem(item)}
               >
-                {/* Real Photo */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-black cursor-pointer" onClick={() => setActiveDrawerItem(item)}>
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-surface-darker/90 via-transparent to-transparent opacity-80" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded bg-stone-950/90 border border-stone-800 text-[11px] font-semibold text-amber-400 uppercase tracking-wider">
+                  {item.categoryName}
+                </span>
+              </div>
 
-                  {/* Category Pill */}
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-surface-darker/85 backdrop-blur-md border border-white/10 text-[11px] font-semibold text-metallic-brass uppercase tracking-wider">
-                    {item.categoryName}
+              {/* Info */}
+              <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                <div>
+                  <h3
+                    onClick={() => setActiveItem(item)}
+                    className="text-base font-serif font-bold text-stone-100 hover:text-amber-400 transition-colors cursor-pointer"
+                  >
+                    {item.title}
+                  </h3>
+
+                  <div className="mt-3 space-y-1.5">
+                    {item.visibleHighlights.map((feat, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-stone-300">
+                        <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                        <span>{feat}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-stone-800 flex items-center justify-between text-xs">
+                  <span className="text-stone-400 italic text-[11px]">
+                    Available in store
                   </span>
 
-                  {/* Hover Quick View Overlay Button */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-                    <span className="px-4 py-2 rounded-full glass-panel-glow border border-metallic-brass text-xs font-bold text-white flex items-center gap-1.5 shadow-lg">
-                      <Eye className="w-3.5 h-3.5 text-metallic-brass" />
-                      <span>Inspect Details</span>
-                    </span>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setActiveItem(item)}
+                    className="px-3 py-1.5 rounded bg-stone-800 hover:bg-stone-700 text-stone-200 border border-stone-700 transition-colors flex items-center gap-1 font-medium"
+                  >
+                    <Eye className="w-3 h-3 text-amber-400" />
+                    <span>View Details</span>
+                  </button>
                 </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-                {/* Card Content */}
-                <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <h3
-                      onClick={() => setActiveDrawerItem(item)}
-                      className="text-lg font-serif font-bold text-slate-100 group-hover:text-metallic-brass-light transition-colors line-clamp-2 cursor-pointer"
-                    >
-                      {item.title}
-                    </h3>
-
-                    {/* Visible highlights */}
-                    <div className="mt-3.5 space-y-1.5">
-                      {item.visibleHighlights.map((feat, hIdx) => (
-                        <div key={hIdx} className="flex items-center gap-2 text-xs text-slate-300">
-                          <Check className="w-3.5 h-3.5 text-metallic-copper shrink-0" />
-                          <span>{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Card Action Footer */}
-                  <div className="pt-4 border-t border-surface-border/60 flex items-center justify-between">
-                    <span className="text-xs text-slate-400 italic">
-                      {item.inquiryNote}
-                    </span>
-
-                    <button
-                      type="button"
-                      onClick={() => setActiveDrawerItem(item)}
-                      className="px-3.5 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider bg-surface-card hover:bg-surface-border text-slate-200 border border-surface-border hover:border-metallic-brass/50 transition-colors flex items-center gap-1.5 active:scale-95"
-                    >
-                      <span>Inspect</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-
-        {/* Empty Search State */}
+        {/* Empty State */}
         {filteredItems.length === 0 && (
-          <div className="text-center py-16 px-4 rounded-2xl border border-dashed border-surface-border max-w-lg mx-auto">
-            <p className="text-slate-300 font-medium mb-2">No matching collection items found.</p>
-            <p className="text-xs text-slate-500 mb-4">
-              Try adjusting your search query or view all available showroom departments.
-            </p>
+          <div className="text-center py-12 px-4 rounded border border-dashed border-stone-800 max-w-md mx-auto">
+            <p className="text-stone-300 font-medium text-sm mb-1">No items found.</p>
+            <p className="text-xs text-stone-500 mb-3">Adjust your search query or reset category filter.</p>
             <button
               type="button"
               onClick={() => {
                 setSelectedCategory('all');
                 setSearchQuery('');
               }}
-              className="px-5 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-gradient-to-r from-metallic-brass to-metallic-copper text-surface-darker font-bold"
+              className="px-4 py-1.5 rounded text-xs font-semibold uppercase tracking-wider bg-amber-600 text-stone-950"
             >
               Reset Filters
             </button>
@@ -219,116 +183,81 @@ export const CollectionsCatalog: React.FC = () => {
         )}
       </div>
 
-      {/* Luxury Slide-Over Inspection Drawer */}
-      <AnimatePresence>
-        {activeDrawerItem && (
-          <div className="fixed inset-0 z-50 overflow-hidden">
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveDrawerItem(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-md transition-opacity"
-            />
-
-            {/* Sliding Drawer */}
-            <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-              <motion.div
-                initial={{ x: '100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '100%' }}
-                transition={{ type: 'spring', damping: 28, stiffness: 260 }}
-                className="w-screen max-w-md bg-surface-darker border-l border-surface-border p-6 sm:p-8 flex flex-col justify-between overflow-y-auto shadow-2xl relative"
+      {/* Item Detail Modal */}
+      {activeItem && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 sm:p-6">
+          <div className="bg-stone-900 border border-stone-800 rounded-lg max-w-xl w-full overflow-hidden shadow-2xl relative">
+            <div className="flex items-center justify-between p-4 border-b border-stone-800">
+              <span className="text-xs font-semibold uppercase tracking-wider text-amber-400">
+                {activeItem.categoryName}
+              </span>
+              <button
+                type="button"
+                onClick={() => setActiveItem(null)}
+                className="p-1 rounded text-stone-400 hover:text-white"
+                aria-label="Close"
               >
-                {/* Header */}
-                <div className="space-y-6">
-                  <div className="flex items-center justify-between pb-4 border-b border-surface-border">
-                    <span className="text-xs font-semibold text-metallic-brass uppercase tracking-widest">
-                      {activeDrawerItem.categoryName}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setActiveDrawerItem(null)}
-                      className="p-2 rounded-full bg-surface-card text-slate-400 hover:text-white transition-colors"
-                      aria-label="Close drawer"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="relative aspect-video overflow-hidden bg-stone-950">
+              <img
+                src={activeItem.image}
+                alt={activeItem.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            <div className="p-6 space-y-4">
+              <div>
+                <h3 className="text-xl font-serif font-bold text-stone-100">
+                  {activeItem.title}
+                </h3>
+                <p className="text-xs text-stone-400 mt-1">
+                  Photographed in physical showroom inventory in Rewari.
+                </p>
+              </div>
+
+              <div className="space-y-1.5">
+                <span className="text-xs font-semibold uppercase tracking-wider text-stone-400 block">
+                  Observed Physical Specifications
+                </span>
+                {activeItem.visibleHighlights.map((feat, idx) => (
+                  <div key={idx} className="flex items-center gap-2 text-xs text-stone-200">
+                    <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                    <span>{feat}</span>
                   </div>
+                ))}
+              </div>
 
-                  {/* Photo with zoom preview */}
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-black border border-surface-border shadow-card-luxury">
-                    <img
-                      src={activeDrawerItem.image}
-                      alt={activeDrawerItem.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-surface-darker/90 via-transparent to-transparent" />
-                  </div>
+              <div className="p-3.5 rounded bg-stone-950 border border-stone-800 text-xs text-stone-300 flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                <span>
+                  Available on the showroom floor at {businessInfo.address.fullFormatted}. Inquire in store for sizes and piece configurations.
+                </span>
+              </div>
 
-                  {/* Title & Description */}
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-serif font-bold text-slate-100">
-                      {activeDrawerItem.title}
-                    </h3>
-                    <p className="text-xs text-slate-400">
-                      Photographed in our physical showroom inventory.
-                    </p>
-                  </div>
-
-                  {/* Features */}
-                  <div className="space-y-2.5">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-metallic-copper block">
-                      Physical Specifications & Highlights
-                    </span>
-                    {activeDrawerItem.visibleHighlights.map((feat, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-center gap-2.5 p-3 rounded-xl bg-surface-card/60 border border-surface-border text-xs text-slate-200"
-                      >
-                        <ShieldCheck className="w-4 h-4 text-metallic-brass shrink-0" />
-                        <span>{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Address Context */}
-                  <div className="p-4 rounded-xl glass-panel border border-metallic-brass/30 space-y-1 text-xs">
-                    <div className="flex items-center gap-1.5 text-metallic-brass font-semibold">
-                      <MapPin className="w-3.5 h-3.5" />
-                      <span>On-Floor Showroom Inspection</span>
-                    </div>
-                    <p className="text-slate-300">
-                      Available on our showroom floor at {businessInfo.address.fullFormatted}. Inquire in person to test weight and gauge thickness.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Drawer Footer Actions */}
-                <div className="pt-6 mt-6 border-t border-surface-border space-y-3">
-                  <button
-                    type="button"
-                    onClick={handleScrollToVisit}
-                    className="w-full py-3.5 px-6 rounded-xl font-semibold uppercase tracking-wider text-xs bg-gradient-to-r from-metallic-brass via-metallic-brass-light to-metallic-copper text-surface-darker shadow-glow-brass hover:shadow-glow-copper transition-all flex items-center justify-center gap-2 active:scale-95"
-                  >
-                    <MapPin className="w-4 h-4" />
-                    <span>Get Showroom Directions</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => setActiveDrawerItem(null)}
-                    className="w-full py-3 px-6 rounded-xl font-semibold uppercase tracking-wider text-xs bg-surface-card hover:bg-surface-border text-slate-300 border border-surface-border transition-colors text-center"
-                  >
-                    Back to Collections
-                  </button>
-                </div>
-              </motion.div>
+              <div className="pt-2 flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handleScrollToVisit}
+                  className="flex-1 py-2.5 px-4 rounded text-xs font-semibold uppercase tracking-wider bg-amber-600 hover:bg-amber-500 text-stone-950 transition-colors text-center"
+                >
+                  Get Showroom Directions
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveItem(null)}
+                  className="py-2.5 px-4 rounded text-xs font-medium text-stone-300 hover:text-white bg-stone-800 border border-stone-700 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 };

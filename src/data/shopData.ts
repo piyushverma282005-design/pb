@@ -102,20 +102,6 @@ export const productCategories: ProductCategory[] = [
  */
 export const showroomZones: ShowroomZone[] = [
   {
-    id: 'facade',
-    title: 'Grand Storefront & Facade',
-    categoryTag: 'Exterior & Entry',
-    shortDescription: 'Modern showroom facade with signature emblem.',
-    detailedDescription:
-      'The exterior features modern vertical architectural louvers and a large circular embossed medallion depicting a traditional thali and spoons emblem with "PRAHALAD BHAGAT JI" signage.',
-    image: '/images/shop/facade.webp',
-    visibleFeatures: [
-      'Circular metallic thali & spoons medallion',
-      'Architectural louvered facade',
-      'Glazed customer entryway',
-    ],
-  },
-  {
     id: 'grand-aisle',
     title: 'Central Showroom Promenade',
     categoryTag: 'Main Floor',

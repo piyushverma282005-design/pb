@@ -1,7 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Gift, Heart, Sparkles, Home, ShieldCheck, MapPin, ArrowRight } from 'lucide-react';
-import { businessInfo } from '../data/shopData';
+import { ChevronRight, Check } from 'lucide-react';
 
 interface GiftingTheme {
   title: string;
@@ -72,120 +70,86 @@ export const WeddingGifting: React.FC = () => {
   };
 
   return (
-    <section id="wedding-gifting" className="py-20 lg:py-28 relative overflow-hidden bg-surface-dark/40">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 right-0 w-96 h-96 bg-metallic-brass/10 blur-3xl pointer-events-none rounded-full" />
-      <div className="absolute bottom-10 left-10 w-96 h-96 bg-metallic-copper/10 blur-3xl pointer-events-none rounded-full" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="wedding-gifting" className="py-16 lg:py-24 bg-stone-900/40 border-b border-stone-800 text-stone-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-surface-card border border-surface-border mb-4">
-            <Gift className="w-3.5 h-3.5 text-metallic-brass" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-slate-300">
-              Wedding Trousseau & Family Gifting
-            </span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-100 tracking-tight">
+        <div className="max-w-3xl mb-12">
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-500 block mb-2">
+            Wedding & Family Gifting
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-100 tracking-tight">
             Traditions of Kitchen Gifting
           </h2>
-          <div className="h-1 w-20 bg-gradient-to-r from-metallic-brass to-metallic-copper mx-auto rounded-full mt-3 mb-4" />
-          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-            In Indian culture, kitchen utensils and sacred metalware represent auspicious beginnings and enduring utility. Families visit our Rewari showroom to personally assemble tailored collections for marriages and housewarmings.
+          <div className="h-1 w-16 bg-amber-600 rounded-full mt-3 mb-4" />
+          <p className="text-stone-300 text-sm sm:text-base leading-relaxed">
+            In Indian culture, kitchen utensils and sacred metalware represent auspicious beginnings and enduring utility. Families visit our Rewari showroom to personally assemble tailored collections for weddings and housewarmings.
           </p>
         </div>
 
-        {/* 4 Themed Grid Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        {/* 4 Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {giftingThemes.map((theme, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-2xl overflow-hidden bg-surface-card border border-surface-border hover:border-metallic-brass/50 shadow-card-dark transition-all duration-300 flex flex-col sm:flex-row group"
+              className="rounded-lg overflow-hidden bg-stone-900 border border-stone-800 flex flex-col sm:flex-row shadow-sm"
             >
-              {/* Photo */}
-              <div className="sm:w-2/5 relative aspect-video sm:aspect-auto overflow-hidden bg-surface-darker shrink-0">
+              <div className="sm:w-2/5 aspect-video sm:aspect-auto overflow-hidden bg-stone-950 shrink-0">
                 <img
                   src={theme.image}
                   alt={theme.title}
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-surface-card via-transparent to-transparent opacity-70" />
               </div>
 
-              {/* Content */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
-                  <span className="text-xs font-semibold text-metallic-copper uppercase tracking-wider block mb-1">
+                  <span className="text-[11px] font-semibold text-amber-500 uppercase tracking-wider block mb-1">
                     {theme.hindiTitle}
                   </span>
-                  <h3 className="text-xl font-serif font-bold text-slate-100 group-hover:text-metallic-brass-light transition-colors">
+                  <h3 className="text-lg font-serif font-bold text-stone-100">
                     {theme.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2">
+                  <p className="text-xs text-stone-300 leading-relaxed mt-2">
                     {theme.description}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-surface-border/60 space-y-1.5">
+                <div className="pt-3 border-t border-stone-800 space-y-1.5">
                   {theme.features.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-center gap-2 text-xs text-slate-300">
-                      <Sparkles className="w-3.5 h-3.5 text-metallic-brass shrink-0" />
+                    <div key={fIdx} className="flex items-center gap-2 text-xs text-stone-300">
+                      <Check className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                       <span>{feat}</span>
                     </div>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Custom Consultation Callout Banner (Zero-Fake-Data Compliant) */}
-        <div className="rounded-3xl glass-panel-glow border border-metallic-brass/40 p-8 sm:p-12 relative overflow-hidden text-center sm:text-left">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-darker/60 border border-white/10 text-xs text-metallic-brass">
-                <Heart className="w-3.5 h-3.5 text-metallic-copper" />
-                <span>Personalized Family Assistance</span>
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold text-slate-100">
-                Plan Your Wedding or Griha Pravesh Setup in Person
-              </h3>
-              <p className="text-slate-300 text-sm leading-relaxed max-w-2xl">
-                Because household requirements vary by family preferences and customs, we invite you to visit our Rewari showroom. Our on-floor team assists you in selecting custom piece combinations across stainless steel, brass, copper, and dining ware without rigid pre-packaged constraints.
-              </p>
-              <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-xs text-slate-300 pt-2">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-metallic-copper" />
-                  Heavy-gauge verified steel
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Home className="w-4 h-4 text-metallic-brass" />
-                  Complete kitchen setups
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-slate-400" />
-                  {businessInfo.address.fullFormatted}
-                </span>
-              </div>
-            </div>
-
-            <div className="lg:col-span-4 flex justify-center lg:justify-end">
-              <a
-                href="#visit-us"
-                onClick={handleScrollToVisit}
-                className="px-6 py-4 rounded-xl font-semibold uppercase tracking-wider text-xs bg-gradient-to-r from-metallic-brass via-metallic-brass-light to-metallic-copper text-surface-darker shadow-glow-brass hover:shadow-glow-copper transition-all flex items-center gap-2 active:scale-95"
-              >
-                <span>Visit Showroom Floor</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
+        {/* Personalized Consultation Callout Banner */}
+        <div className="rounded-lg bg-stone-900 border border-stone-800 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="space-y-1.5 text-center sm:text-left">
+            <span className="text-xs font-semibold text-amber-400 uppercase tracking-wider block">
+              In-Person Consultation
+            </span>
+            <h3 className="text-xl font-serif font-bold text-stone-100">
+              Personalized Wedding Trousseau Assembly
+            </h3>
+            <p className="text-xs sm:text-sm text-stone-300 max-w-2xl leading-relaxed">
+              Household requirements vary by family preferences and customs. Visit our Rewari showroom to inspect metal gauge, piece weights, and select custom combinations across stainless steel, brass, and dinnerware.
+            </p>
           </div>
+
+          <a
+            href="#visit-us"
+            onClick={handleScrollToVisit}
+            className="shrink-0 px-6 py-3 rounded text-xs font-semibold uppercase tracking-wider bg-amber-600 hover:bg-amber-500 text-stone-950 transition-colors flex items-center gap-1.5"
+          >
+            <span>Visit Showroom Floor</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </section>
