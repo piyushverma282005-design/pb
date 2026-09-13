@@ -2,6 +2,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ShowroomExplorer } from './components/ShowroomExplorer';
 import { CollectionsCatalog } from './components/CollectionsCatalog';
+import { WeddingGifting } from './components/WeddingGifting';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
         <Hero />
         <ShowroomExplorer />
         <CollectionsCatalog />
+        <WeddingGifting />
       </main>
     </div>
   );
