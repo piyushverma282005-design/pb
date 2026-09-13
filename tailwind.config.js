@@ -4,6 +4,7 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -30,26 +31,36 @@ export default {
           },
         },
         surface: {
-          darker: '#0B0F14',
-          dark: '#12171F',
-          card: '#1A212D',
-          border: '#2A3444',
-          subtle: '#212A38',
+          darker: '#080B0F',
+          dark: '#10141B',
+          card: '#181E29',
+          border: '#273142',
+          subtle: '#1E2633',
+        },
+        ivory: {
+          bg: '#FAF8F5',
+          card: '#FFFFFF',
+          border: '#E8E2D7',
+          subtle: '#F3EFE8',
+          text: '#292524',
+          muted: '#78716C',
         }
       },
       fontFamily: {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'Cinzel', 'Georgia', 'serif'],
+        serif: ['Cinzel', 'Playfair Display', 'Georgia', 'serif'],
+        display: ['Playfair Display', 'Cinzel', 'serif'],
       },
       backgroundImage: {
         'metallic-gradient': 'linear-gradient(135deg, #C59B27 0%, #E2BF5C 50%, #C86A3D 100%)',
         'copper-gradient': 'linear-gradient(135deg, #C86A3D 0%, #DE8658 50%, #B08958 100%)',
-        'dark-radial': 'radial-gradient(ellipse at center, #1A212D 0%, #0B0F14 100%)',
+        'gold-foil': 'linear-gradient(135deg, #ECC86A 0%, #C59B27 40%, #E8C768 70%, #9B7617 100%)',
       },
       boxShadow: {
-        'glow-brass': '0 0 25px -5px rgba(197, 155, 39, 0.3)',
-        'glow-copper': '0 0 25px -5px rgba(200, 106, 61, 0.3)',
-        'card-dark': '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
+        'glow-brass': '0 0 30px -5px rgba(197, 155, 39, 0.35)',
+        'glow-copper': '0 0 30px -5px rgba(200, 106, 61, 0.35)',
+        'card-luxury': '0 20px 40px -15px rgba(0, 0, 0, 0.6)',
+        'card-ivory': '0 20px 40px -15px rgba(180, 140, 90, 0.12)',
       }
     },
   },
