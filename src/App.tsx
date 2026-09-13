@@ -1,6 +1,7 @@
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ShowroomExplorer } from './components/ShowroomExplorer';
+import { CollectionsCatalog } from './components/CollectionsCatalog';
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <main>
         <Hero />
         <ShowroomExplorer />
+        <CollectionsCatalog />
       </main>
     </div>
   );
