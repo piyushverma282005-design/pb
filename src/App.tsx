@@ -3,6 +3,7 @@ import { Hero } from './components/Hero';
 import { ShowroomExplorer } from './components/ShowroomExplorer';
 import { CollectionsCatalog } from './components/CollectionsCatalog';
 import { WeddingGifting } from './components/WeddingGifting';
+import { MaterialCareGuide } from './components/MaterialCareGuide';
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
         <ShowroomExplorer />
         <CollectionsCatalog />
         <WeddingGifting />
+        <MaterialCareGuide />
       </main>
     </div>
   );
